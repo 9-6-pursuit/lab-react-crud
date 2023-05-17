@@ -10,6 +10,7 @@ import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
 
 function App() {
+  
   return (
     <div className="wrapper">
       <Router>
