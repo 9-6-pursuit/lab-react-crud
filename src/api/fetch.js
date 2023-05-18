@@ -1,6 +1,6 @@
 const URL = process.env.REACT_APP_API_BASE_URL;
-// Shows
 
+// Shows
 // Create
 export function createShow(show) {
   return;
@@ -30,8 +30,29 @@ export function updateShow(id, show) {
 }
 
 // Movies
-
 export async function getAllMovies() {
   const response = await fetch(`${URL}/movies`);
   return await response.json();
+}
+
+// Movie/Get one
+export async function getOneMovie(id) {
+  const response = await fetch(`${URL}/movies/${id}`);
+  return await response.json();
+}
+
+// Create
+export function createMovie(movie) {
+  return;
+}
+
+// Update
+export function updateMovie(id, movie) {
+  return;
+}
+
+// Delete
+export function destroyMovie(id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
 }
