@@ -8,20 +8,47 @@ import ShowListing from "./ShowListing";
 
 import "./ShowsIndex.css";
 
+
+
+function filterShows(search, shows) {
+  return shows.filter((show) => {
+    return show.title.toLowerCase().match(search.toLowerCase());
+  });
+}
+
+
 export default function ShowsIndex() {
+  const [loadingError, setLoadingError] = useState(false);
   const [shows, setShows] = useState([]);
+  const [allShows, setAllshows] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
+
+  function handleTextChange(event) {
+    const title = event.target.value;
+    const result = title.length ? filterShows(title, allShows) : allShows;
+    setSearchTitle(title);
+    setShows(result);
+  }
+
 
   useEffect(() => {
-    getAllShows().then((response) => {
-      setShows(response);
-    }).catch((error) => {
-      console.error('Error fetching shows:', error);
-    });
+    getAllShows()
+      .then((response) => {
+        setAllshows(response);
+        setShows(response);
+        setLoadingError(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching shows:", error);
+        setLoadingError(true);
+      });
   }, []);
+
+
 
   return (
     <div>
-      {false ? (
+      {loadingError ? (
         <ErrorMessage />
       ) : (
         <section className="shows-index-wrapper">
@@ -34,9 +61,9 @@ export default function ShowsIndex() {
             Search Shows:
             <input
               type="text"
-              // value={searchTitle}
+              value={searchTitle}
               id="searchTitle"
-              // onChange={handleTextChange}
+              onChange={handleTextChange}
             />
           </label>
           <section className="shows-index">
