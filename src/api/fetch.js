@@ -2,8 +2,14 @@ const URL = process.env.REACT_APP_API_BASE_URL;
 
 // Shows
 // Create
-export function createShow(show) {
-  return;
+export async function createShow(show) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(`${URL}/shows/`, options);
+  return await response.json();
 }
 
 // Delete
@@ -25,8 +31,14 @@ export async function getOneShow(id) {
 }
 
 // Update
-export function updateShow(id, show) {
-  return;
+export async function updateShow(id, show) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(show),
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(`${URL}/shows/${id}`, options);
+  return await response.json();
 }
 
 // Movies
