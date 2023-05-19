@@ -54,13 +54,25 @@ export async function getOneMovie(id) {
 }
 
 // Create
-export function createMovie(movie) {
-  return;
+export async function createMovie(movie) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(`${URL}/movies/`, options);
+  return await response.json();
 }
 
 // Update
-export function updateMovie(id, movie) {
-  return;
+export async function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(`${URL}/movies/${id}`, options);
+  return await response.json();
 }
 
 // Delete
