@@ -70,3 +70,15 @@ export function addMovie(movie) {
     return response.json();
   });
 }
+
+//Edit
+export function editMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/movies/${id}`, options).then((response) => {
+    return response.json();
+  });
+}
