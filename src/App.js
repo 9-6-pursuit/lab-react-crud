@@ -9,6 +9,13 @@ import ShowsEditForm from "./components/shows/ShowsEditForm";
 import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
 
+// newly added
+import MoviesIndex from "./components/movies/MoviesIndex";
+import Movie from "./components/movies/Movie";
+import MovieEditForm from "./components/movies/MovieEditForm"
+import MoviesNewForm from "./components/movies/MoviesNewForm";
+
+
 function App() {
   return (
     <div className="wrapper">
@@ -20,6 +27,12 @@ function App() {
           <Route path="/shows/new" element={<ShowsNewForm />} />
           <Route path="/shows/:id" element={<Show />} />
           <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
+
+{/* newly added */}
+<Route path="/movies" element={<MoviesIndex />} />
+          <Route path="/movies/new" element={<MoviesNewForm />} />
+          <Route path="/movies/:id" element={<Movie />} />
+          <Route path="/movies/:id/edit" element={<MovieEditForm />} />
         </Routes>
         <Footer />
       </Router>
