@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createShow } from "../../api/fetch";
+import { useNavigate,useParams } from "react-router-dom";
 
 import "./ShowsForm.css";
 
 export default function ShowsForm() {
+  const navigate = useNavigate()
+  const {id} = useParams()
+
   const [show, setShow] = useState({
     type: "",
     title: "",
@@ -15,7 +20,16 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
+  function handleSubmit(event) {
+    event.preventDefault();
+    createShow(show)
+    .then((response) => {
+      navigate(`/shows/${response.id}`)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -24,14 +38,31 @@ export default function ShowsForm() {
     });
   }
 
+  useEffect(() => {
+    function getShow() {
+      fetch(`${URL}/shows,${id}`)
+      .then((response) => response.json())
+      .then((response) => {
+        setShow(response);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
+    if (id) {
+      getShow();
+    }
+  },[id]);
+
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title:</label>
+      <label htmlFor="title" >Title:</label>
       <input
         type="text"
         id="title"
         value={show.title}
         onChange={handleTextChange}
+        required
       />
 
       <label htmlFor="description">Description:</label>
