@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllShows } from "../../api/fetch";
 
 import ErrorMessage from "../errors/ErrorMessage";
-import ShowListing from "./ShowListing.js"
+import ShowListing from "./ShowListing.js";
 
 import "./ShowsIndex.css";
 
