@@ -1,35 +1,34 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import "./Show.css";
+import "../shows/Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
 import { destroyObject, getOneObject } from "../../api/fetch";
 
-function Show() {
-  const [show, setShow] = useState({});
+function Movie() {
+  const [movie, setMovie] = useState({});
   const [loadingError, setLoadingError] = useState(false);
 
   const { id } = useParams();
 
-  function handleDelete(id) {
-    destroyObject('shows', id)
-  }
-
   useEffect(() => {
-    getOneObject('shows', id).then(json => {
-      setShow(json)
+    getOneObject('movies', id).then(response => {
+      setMovie(response)
       setLoadingError(false)
     })
     .catch(error => {
-      console.log(error)
       setLoadingError(true)
     })
   }, [])
 
+  function handleDelete(id) {
+    destroyObject('movies', id)
+  }
+
   return (
     <section className="shows-show-wrapper">
-      <h2>{show.title}</h2>
+      <h2>{movie.title}</h2>
       <section className="shows-show">
         {loadingError ? (
           <ErrorMessage />
@@ -37,32 +36,32 @@ function Show() {
           <>
             <aside>
               <p>
-                <span>Duration:</span> {show.duration}
+                <span>Duration:</span> {movie.duration}
               </p>
               <p>
-                <span>Listed Categories:</span> {show.listedIn}
+                <span>Listed Categories:</span> {movie.listedIn}
               </p>
               <p>
-                <span>Country:</span> {show.country}
+                <span>Country:</span> {movie.country}
               </p>
               <p>
-                <span>Rating:</span> {show.rating}
+                <span>Rating:</span> {movie.rating}
               </p>
               <p>
-                <span>Date Added:</span> {show.dateAdded ? show.dateAdded : '---'}
+                <span>Date Added:</span> {movie.dateAdded}
               </p>
             </aside>
             <article>
-              <p>{show.description}</p>
+              <p>{movie.description}</p>
             </article>
             <aside>
               <button className="delete" onClick={() => {
-                handleDelete(show.id)
+                handleDelete(movie.id)
                 window.location.reload()
               }}>
                 Remove show
               </button>
-              <Link to={`/shows/${id}/edit`}>
+              <Link to={`/movies/${id}/edit`}>
                 <button>Edit</button>
               </Link>
             </aside>
@@ -73,4 +72,4 @@ function Show() {
   );
 }
 
-export default Show;
+export default Movie;

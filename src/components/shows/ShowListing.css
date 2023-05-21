@@ -1,6 +1,6 @@
 .show {
   border: 1px solid var(--primary);
-  border-radius: 3px;
+  border-radius: 8px;
   color: var(--gray);
   display: grid;
   grid-template-rows: auto 1fr auto;
