@@ -11,6 +11,7 @@ function filterShows(search, shows) {
     return show.title.toLowerCase().match(search.toLowerCase());
   });
 }
+
 export default function ShowsIndex() {
   const [loadingError, setLoadingError] = useState(false);
   const [shows, setShows] = useState([])
