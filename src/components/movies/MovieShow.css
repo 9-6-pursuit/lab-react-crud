@@ -1,0 +1,47 @@
+.movie-container {
+    margin: 0 auto;
+    width: 75%;
+  }
+  
+  .movie-card {
+    border: 1px solid var(--secondary);
+    border-radius: 4px;
+    color: var(--dark-gray);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .movie-card div {
+    padding: 15px 30px;
+  }
+  
+  .movie-card section {
+    background: var(--secondary);
+    color: var(--light);
+  }
+  
+  .movie-card section p {
+    display: inline-block;
+    font-size: 15px;
+    margin: 15px 30px;
+    padding: 0;
+    width: auto;
+  }
+  
+  .movie-card section span {
+    font-weight: bold;
+  }
+  
+  .movie-card section button {
+    background: none;
+    border: none;
+    color: var(--light);
+    cursor: pointer;
+    margin: 15px 30px;
+    text-decoration: underline;
+  }
+  
+  .movie-card section button:hover {
+    text-decoration: none;
+  }
+  
