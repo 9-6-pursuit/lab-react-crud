@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Components
+
 import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
@@ -28,7 +28,7 @@ function App() {
           <Route path="/shows/:id" element={<Show />} />
           <Route path="/shows/:id/edit" element={<ShowsEditForm />} />
 
-{/* newly added */}
+
 <Route path="/movies" element={<MoviesIndex />} />
           <Route path="/movies/new" element={<MoviesNewForm />} />
           <Route path="/movies/:id" element={<Movie />} />

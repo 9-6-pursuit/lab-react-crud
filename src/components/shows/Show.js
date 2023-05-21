@@ -11,7 +11,7 @@ function Show() {
 
   const { id } = useParams();
   let navigate = useNavigate();
-// added 3
+
   function handleDelete() {
     destroyShow(id)
       .then(() => navigate("/shows"))
@@ -20,7 +20,7 @@ function Show() {
         setLoadingError(true);
       });
   }
-// added 2
+
   useEffect(() => {
     getOneShow(id)
       .then((response) => {
@@ -35,7 +35,7 @@ function Show() {
         setLoadingError(true);
       });
   }, [id]);
-// added 4
+
   return (
     <section className="shows-show-wrapper">
       <h2>{show.title}</h2>

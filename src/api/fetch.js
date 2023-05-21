@@ -9,7 +9,7 @@ export function createShow(show) {
   return;
 }
 
-// Delete
+
 export function destroyShow(id) {
   const options = { method: "DELETE" };
   return fetch(`${URL}/shows/${id}`, options);
@@ -31,7 +31,7 @@ export function getOneShow(id) {
 // export function updateShow(id, show) {
 //   return;
 // }
-// newly added
+
 export function updateShow(id, show) {
   const options = {
     method: "PUT",
@@ -45,10 +45,7 @@ export function updateShow(id, show) {
 
 // Movies
 
-// export function getAllMovies() {
-//   return;
-// }
-// newly added
+
 export function getAllMovies() {
   return fetch(`${URL}/movies`).then((response) => response.json());
 }
