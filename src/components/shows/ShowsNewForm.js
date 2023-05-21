@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import "./ShowsForm.css";
+import { createObject } from "../../api/fetch";
 
 export default function ShowsForm() {
   const [show, setShow] = useState({
@@ -15,7 +16,10 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
+  function handleSubmit(event) {
+    event.preventDefault()
+    createObject(show, 'shows')
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -25,7 +29,7 @@ export default function ShowsForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <label htmlFor="title">Title:</label>
       <input
         type="text"

@@ -40,3 +40,7 @@ img {
 div > p {
   text-align: center;
 }
+
+.on-dark {
+  color: cyan;
+}
