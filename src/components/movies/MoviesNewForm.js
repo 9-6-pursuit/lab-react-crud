@@ -1,58 +1,40 @@
-//import { useState } from "react";
-import "./ShowsForm.css";
-// src/components/shows/ShowsEditForm.js
-//import { updateShow } from "../../api/fetch";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { updateShow, getOneShow } from "../../api/fetch";
-export default function ShowsForm() {
-  const [show, setShow] = useState({
-    type: "",
+import { useState } from "react";
+import { createMovie } from "../../api/fetch";
+import "./MoviesForm.css";
+import { useNavigate } from "react-router-dom";
+
+export default function MoviesForm() {
+  const [movie, setMovie] = useState({
+    genre: "",
     title: "",
     country: "",
     dateAdded: "",
-    description: "",
+    plot: "",
     duration: "",
     listedIn: "",
     rating: "",
     releaseYear: "",
   });
 
-
-
   let navigate = useNavigate();
-  const { id } = useParams();
-  //function handleSubmit(event) {}
+  
   function handleSubmit(event) {
     event.preventDefault();
-  
-    updateShow(id, show)
-      .then(() => {
-        navigate(`/shows/${id}`);
+    createMovie(movie)
+      .then((response) => {
+        navigate(`/movies/${response.id}`);
       })
       .catch((error) => {
         console.error(error);
       });
   }
 
-
   function handleTextChange(event) {
-    setShow({
-      ...show,
+    setMovie({
+      ...movie,
       [event.target.id]: event.target.value,
     });
   }
-
-
-  useEffect(() => {
-    getOneShow(id)
-      .then((response) => {
-        setShow(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [id]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -60,23 +42,23 @@ export default function ShowsForm() {
       <input
         type="text"
         id="title"
-        value={show.title}
+        value={movie.title}
         onChange={handleTextChange}
       />
 
-      <label htmlFor="description">Description:</label>
+      <label htmlFor="plot">Plot:</label>
       <input
         type="text"
-        id="description"
-        value={show.description}
+        id="plot"
+        value={movie.plot}
         onChange={handleTextChange}
       />
 
-      <label htmlFor="type">Type</label>
+      <label htmlFor="genre">Genre:</label>
       <input
         type="text"
-        id="type"
-        value={show.type}
+        id="genre"
+        value={movie.genre}
         onChange={handleTextChange}
       />
 
@@ -84,39 +66,39 @@ export default function ShowsForm() {
       <input
         type="text"
         id="rating"
-        value={show.rating}
+        value={movie.rating}
         onChange={handleTextChange}
       />
 
-      <label htmlFor="listedIn">Listed in</label>
+      <label htmlFor="listedIn">Listed in:</label>
       <input
         type="text"
         id="listedIn"
-        value={show.listedIn}
+        value={movie.listedIn}
         onChange={handleTextChange}
       />
 
-      <label htmlFor="duration">Duration</label>
+      <label htmlFor="duration">Duration:</label>
       <input
         type="text"
         id="duration"
-        value={show.duration}
+        value={movie.duration}
         onChange={handleTextChange}
       />
 
-      <label htmlFor="releaseYear">Release Year</label>
+      <label htmlFor="releaseYear">Release Year:</label>
       <input
         type="text"
         id="releaseYear"
-        value={show.releaseYear}
+        value={movie.releaseYear}
         onChange={handleTextChange}
       />
 
-      <label htmlFor="country">Country</label>
+      <label htmlFor="country">Country:</label>
       <input
         type="text"
         id="country"
-        value={show.country}
+        value={movie.country}
         onChange={handleTextChange}
       />
 
@@ -124,7 +106,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="dateAdded"
-        value={show.dateAdded}
+        value={movie.dateAdded}
         onChange={handleTextChange}
       />
 
@@ -134,4 +116,3 @@ export default function ShowsForm() {
     </form>
   );
 }
-

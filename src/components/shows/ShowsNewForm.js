@@ -1,7 +1,8 @@
 import { useState } from "react";
-
+// src/components/shows/ShowsNewForm.js
+import { createShow } from "../../api/fetch";
 import "./ShowsForm.css";
-
+import { useNavigate } from "react-router-dom";
 export default function ShowsForm() {
   const [show, setShow] = useState({
     type: "",
@@ -15,7 +16,18 @@ export default function ShowsForm() {
     releaseYear: "",
   });
 
-  function handleSubmit(event) {}
+  //function handleSubmit(event) {}
+  let navigate = useNavigate();
+  function handleSubmit(event) {
+    event.preventDefault();
+    createShow(show)
+      .then((response) => {
+        navigate(`/shows/${response.id}`);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   function handleTextChange(event) {
     setShow({
@@ -104,3 +116,4 @@ export default function ShowsForm() {
     </form>
   );
 }
+

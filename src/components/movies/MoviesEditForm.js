@@ -1,58 +1,54 @@
-//import { useState } from "react";
-import "./ShowsForm.css";
-// src/components/shows/ShowsEditForm.js
-//import { updateShow } from "../../api/fetch";
+import "./MoviesForm.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { updateShow, getOneShow } from "../../api/fetch";
-export default function ShowsForm() {
-  const [show, setShow] = useState({
-    type: "",
+import { updateMovie, getOneMovie } from "../../api/fetch";
+
+export default function MoviesForm() {
+  const [movie, setMovie] = useState({
     title: "",
-    country: "",
-    dateAdded: "",
+    director: "",
+    genre: "",
+    releaseDate: "",
     description: "",
     duration: "",
-    listedIn: "",
     rating: "",
-    releaseYear: "",
+    country: "",
+    language: "",
   });
-
-
 
   let navigate = useNavigate();
   const { id } = useParams();
-  //function handleSubmit(event) {}
+
   function handleSubmit(event) {
     event.preventDefault();
   
-    updateShow(id, show)
+    updateMovie(id, movie)
       .then(() => {
-        navigate(`/shows/${id}`);
+        navigate(`/movies/${id}`);
       })
       .catch((error) => {
         console.error(error);
       });
   }
 
-
   function handleTextChange(event) {
-    setShow({
-      ...show,
+    setMovie({
+      ...movie,
       [event.target.id]: event.target.value,
     });
   }
 
-
   useEffect(() => {
-    getOneShow(id)
+    getOneMovie(id)
       .then((response) => {
-        setShow(response);
+        setMovie(response);
       })
       .catch((error) => {
         console.error(error);
       });
   }, [id]);
+
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -60,7 +56,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="title"
-        value={show.title}
+        value={movie.title}
         onChange={handleTextChange}
       />
 
@@ -68,15 +64,55 @@ export default function ShowsForm() {
       <input
         type="text"
         id="description"
-        value={show.description}
+        value={movie.description}
         onChange={handleTextChange}
       />
 
-      <label htmlFor="type">Type</label>
+      <label htmlFor="director">Director:</label>
       <input
         type="text"
-        id="type"
-        value={show.type}
+        id="director"
+        value={movie.director}
+        onChange={handleTextChange}
+      />
+
+      <label htmlFor="genre">Genre:</label>
+      <input
+        type="text"
+        id="genre"
+        value={movie.genre}
+        onChange={handleTextChange}
+      />
+
+      <label htmlFor="duration">Duration:</label>
+      <input
+        type="text"
+        id="duration"
+        value={movie.duration}
+        onChange={handleTextChange}
+      />
+
+      <label htmlFor="country">Country:</label>
+      <input
+        type="text"
+        id="country"
+        value={movie.country}
+        onChange={handleTextChange}
+      />
+
+      <label htmlFor="language">Language:</label>
+      <input
+        type="text"
+        id="language"
+        value={movie.language}
+        onChange={handleTextChange}
+      />
+
+      <label htmlFor="releaseDate">Release Date:</label>
+      <input
+        type="text"
+        id="releaseDate"
+        value={movie.releaseDate}
         onChange={handleTextChange}
       />
 
@@ -84,47 +120,7 @@ export default function ShowsForm() {
       <input
         type="text"
         id="rating"
-        value={show.rating}
-        onChange={handleTextChange}
-      />
-
-      <label htmlFor="listedIn">Listed in</label>
-      <input
-        type="text"
-        id="listedIn"
-        value={show.listedIn}
-        onChange={handleTextChange}
-      />
-
-      <label htmlFor="duration">Duration</label>
-      <input
-        type="text"
-        id="duration"
-        value={show.duration}
-        onChange={handleTextChange}
-      />
-
-      <label htmlFor="releaseYear">Release Year</label>
-      <input
-        type="text"
-        id="releaseYear"
-        value={show.releaseYear}
-        onChange={handleTextChange}
-      />
-
-      <label htmlFor="country">Country</label>
-      <input
-        type="text"
-        id="country"
-        value={show.country}
-        onChange={handleTextChange}
-      />
-
-      <label htmlFor="dateAdded">Date added:</label>
-      <input
-        type="text"
-        id="dateAdded"
-        value={show.dateAdded}
+        value={movie.rating}
         onChange={handleTextChange}
       />
 
@@ -134,4 +130,3 @@ export default function ShowsForm() {
     </form>
   );
 }
-
