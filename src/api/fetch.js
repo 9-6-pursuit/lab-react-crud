@@ -83,3 +83,9 @@ export function updateMovie(id, movie) {
     return response.json();
   });
 }
+
+// Delete Movies
+export function destroyMovie(id) {
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
+}

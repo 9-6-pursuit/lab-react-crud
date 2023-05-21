@@ -1,6 +1,6 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { destroyShow, getOneShow } from "../../api/fetch";
+import { destroyMovie, getOneMovie } from "../../api/fetch";
 
 import "./Movie.css";
 
@@ -15,8 +15,8 @@ function Movie() {
   let navigate = useNavigate();
 
   function handleDelete() {
-    destroyShow(id)
-      .then(() => navigate("/shows"))
+    destroyMovie(id)
+      .then(() => navigate("/movies"))
       .catch((error) => {
         console.error(error);
         setLoadingError(true);
@@ -24,7 +24,7 @@ function Movie() {
   }
 
   useEffect(() => {
-    getOneShow(id)
+    getOneMovie(id)
       .then((response) => {
         setMovie(response);
         if (Object.keys(response).length === 0) {
@@ -70,7 +70,7 @@ function Movie() {
               <button className="delete" onClick={() => handleDelete(movie.id)}>
                 Remove show
               </button>
-              <Link to={`/shows/${id}/edit`}>
+              <Link to={`/movies/${id}/edit`}>
                 <button>Edit</button>
               </Link>
             </aside>
