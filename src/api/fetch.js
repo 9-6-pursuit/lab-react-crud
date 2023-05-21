@@ -1,23 +1,26 @@
+const URL = process.env.REACT_APP_API_BASE_URL;
 // Shows
 
 // Create
 export function createShow(show) {
-  return;
+  const options = { method: "CREATE" }
+  return fetch(`${URL}/shows/${show}`, options)
 }
 
 // Delete
 export function destroyShow(id) {
-  return;
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/shows/${id}`, options);
 }
 
 // Index/Get all
 export function getAllShows() {
-  return;
+  return fetch(`${URL}/shows`).then((response) => response.json());
 }
 
 // Show/Get one
 export function getOneShow(id) {
-  return;
+  return fetch(`${URL}/shows/${id}`).then((response) => response.json());
 }
 
 // Update
@@ -28,5 +31,18 @@ export function updateShow(id, show) {
 // Movies
 
 export function getAllMovies() {
-  return;
+  return fetch(`${URL}/movies`).then((response) => response.json())
 }
+// Delete Movies
+export function destroyMovie(id) {
+  const options = {method: "DELETE"}
+  return fetch(`${URL}/movies/${id}`, options)
+}
+
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
+}
+
+
+
+
