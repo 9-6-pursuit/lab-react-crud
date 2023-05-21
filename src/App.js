@@ -5,16 +5,15 @@ import Footer from "./components/common/Footer";
 import Home from "./components/home/Home";
 import Nav from "./components/common/Nav";
 import Show from "./components/shows/Show";
-import ShowsEditForm from "./components/shows/ShowsEditForm";
-import ShowsIndex from "./components/shows/ShowsIndex";
 import ShowsNewForm from "./components/shows/ShowsNewForm";
+import ShowsEditForm from "./components/shows/ShowsEditForm";
+import ShowsIndex from "./components/shows/ShowsIndex"
 
-// newly added
+// added
 import MoviesIndex from "./components/movies/MoviesIndex";
-import Movie from "./components/movies/Movie";
-import MovieEditForm from "./components/movies/MovieEditForm"
+import MovieEditForm from "./components/movies/MovieEditForm";
 import MoviesNewForm from "./components/movies/MoviesNewForm";
-
+import Movie from "./components/movies/Movie"
 
 function App() {
   return (
