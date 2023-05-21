@@ -44,6 +44,42 @@ export function updateShow(id, show) {
 
 // Movies
 
+
 export function getAllMovies() {
-  return fetch(`${URL}/movies`).then((response) => response.json())
+  return fetch(`${URL}/movies`)
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// ... other functions ...
+
+// Create
+export function createMovie(movie) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/movies/`, options).then((response) => {
+    return response.json();
+  });
+}
+
+
+// Movie/Get one
+export function getOneMovie(id) {
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
+}
+
+export function updateMovie(id, movie) {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/movies/${id}`, options).then((response) => {
+    return response.json();
+  });
 }
