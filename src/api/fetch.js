@@ -55,7 +55,7 @@ export function createMovie(movie) {
     body: JSON.stringify(movie),
     headers: { "Content-Type": "application/json" },
   };
-  return fetch(`${URL}/movie/`, options).then((response) => {
+  return fetch(`${URL}/movies/`, options).then((response) => {
     return response.json();
   });
 }
@@ -79,7 +79,7 @@ export function updateMovie(id, movie){
     body: JSON.stringify(movie),
     headers: { "Content-Type": "application/json" },
   };
-  return fetch(`${URL}/movie/${id}`, options).then((response) => {
+  return fetch(`${URL}/movies/${id}`, options).then((response) => {
     return response.json();
   });
 }
