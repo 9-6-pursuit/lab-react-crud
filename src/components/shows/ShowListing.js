@@ -10,7 +10,7 @@ export default function ShowListing({ show }) {
       <p className="description">{show.description}</p>
       <aside className="details">
         <p>
-          <span>Listed Categories:</span>
+          <span>Listed Categories: </span>
           {show.listedIn}
         </p>
         <p>
