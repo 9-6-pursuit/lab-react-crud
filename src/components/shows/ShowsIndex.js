@@ -51,7 +51,7 @@ export default function ShowsIndex() {
           </button>
           <br />
           <label htmlFor="searchTitle">
-            Search Shows:
+            <span>Search Shows: </span>
             <input
               type="text"
               value={searchTitle}

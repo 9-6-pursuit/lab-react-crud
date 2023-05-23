@@ -14,8 +14,6 @@ export function createShow(show) {
   });
 }
 
-
-
 // Delete
 export function destroyShow(id) {
   const options = { method: "DELETE" };
@@ -32,7 +30,6 @@ export function getOneShow(id) {
   return fetch(`${URL}/shows/${id}`).then((response) => response.json());
 }
 
-
 // Update
 export function updateShow(id, show) {
   const options = {
@@ -46,7 +43,43 @@ export function updateShow(id, show) {
 }
 
 // Movies
-
+// Index/Get all (MOVIES)
 export function getAllMovies() {
-  return;
+  return fetch(`${URL}/movies`).then((response) => response.json());
+}
+
+// Create (MOVIE)
+export function createMovie(movie) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/movie/`, options).then((response) => {
+    return response.json();
+  });
+}
+
+
+// Delete (MOVIES)
+export function destroyMovie(id){
+  const options = { method: "DELETE" };
+  return fetch(`${URL}/movies/${id}`, options);
+}
+
+// Show/Get (MOVIE)
+export function getOneMovie(id){
+  return fetch(`${URL}/movies/${id}`).then((response) => response.json());
+}
+
+// Update (MOVIE)
+export function updateMovie(id, movie){
+  const options = {
+    method: "PUT",
+    body: JSON.stringify(movie),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${URL}/movie/${id}`, options).then((response) => {
+    return response.json();
+  });
 }
