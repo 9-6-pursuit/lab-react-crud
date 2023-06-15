@@ -1,18 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import "./Show.css";
 
 import ErrorMessage from "../errors/ErrorMessage";
+import { destroyShow, getOneShow } from "../../api/fetch";
 
 function Show() {
   const [show, setShow] = useState({});
   const [loadingError, setLoadingError] = useState(false);
 
   const { id } = useParams();
+  let navigate = useNavigate();
 
-  function handleDelete() {}
+  function handleDelete() {
+    destroyShow(id)
+    .then(() => navigate("/shows"))
+    .catch((error) => {
+      console.error(error)
+      setLoadingError(true)
+    })
+  }
 
+  useEffect(() => {
+    getOneShow(id)
+    .then((response) => {
+      setShow(response)
+      if(Object.keys(response).length === 0){
+        setLoadingError(true)
+      }
+    })
+  })
   return (
     <section className="shows-show-wrapper">
       <h2>{show.title}</h2>
