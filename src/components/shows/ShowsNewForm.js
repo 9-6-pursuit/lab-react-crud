@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+// src/components/shows/ShowsNewForm.js
+import { createShow } from "../../api/fetch";
 import "./ShowsForm.css";
 
 export default function ShowsForm() {
@@ -12,8 +13,7 @@ export default function ShowsForm() {
     duration: "",
     listedIn: "",
     rating: "",
-    releaseYear: "",
-  });
+    releaseYear: ""  });
 
   function handleSubmit(event) {}
 
